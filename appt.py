@@ -7,7 +7,7 @@ TELEGRAM_TOKEN = '8044022972:AAHAlilUYiWuTu1XK9dLj0mTe6kybJBTal4'
 TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
 
 DEEPSEEK_API_KEY = 'sk-e0296482ea0b4343a23e1a796a6683f8'
-DEEPSEEK_API_URL = 'https://api.deepseek.com/v1/query'  # URL del endpoint de DeepSeek
+DEEPSEEK_API_URL = 'https://api.deepseek.com'  # URL del endpoint de DeepSeek
 
 @app.route('/', methods=['GET'])
 def home():
