@@ -10,7 +10,7 @@ TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
 DEEPSEEK_API_KEY = 'sk-e0296482ea0b4343a23e1a796a6683f8'
 client = OpenAI(
     api_key=DEEPSEEK_API_KEY,
-    base_url="https://api.deepseek.com"
+    base_url="https://api.deepseek.com/v1"
 )
 
 @app.route('/', methods=['GET'])
@@ -75,7 +75,7 @@ if __name__ == '__main__':
 import json
 
 # URL de la API de DeepSeek
-url = "https://api.deepseek.com/v1/query"  # Reemplaza con la URL correcta si cambia
+url = "https://api.deepseek.com/v1"  # Reemplaza con la URL correcta si cambia
 
 # Tu clave API
 api_key = "sk-e0296482ea0b4343a23e1a796a6683f8"  
