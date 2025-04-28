@@ -6,7 +6,7 @@ app = Flask(__name__)
 TELEGRAM_TOKEN = '8044022972:AAHAlilUYiWuTu1XK9dLj0mTe6kybJBTal4'  
 TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
 
-DEEPSEEK_API_KEY = 'sk-e101d52f3c8b421686dda4b0a1a665ca' 
+DEEPSEEK_API_KEY = 'sk-e0296482ea0b4343a23e1a796a6683f8' 
 DEEPSEEK_URL = 'https://api.deepseek.com/v1/chat/completions'
 
 @app.route('/', methods=['GET'])
