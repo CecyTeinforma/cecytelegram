@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: cecytelegram
+    env: python
+    plan: free
+    buildCommand: ""
+    startCommand: python3 appt.py
