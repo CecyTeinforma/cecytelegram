@@ -60,12 +60,16 @@ def ask_deepseek(user_message, full_prompt):
         ],
     }
     r = requests.post(DEEPSEEK_URL, json=payload, headers=headers)
+    
+    # Imprimir la respuesta para ver qué nos devuelve la API
     if r.status_code == 200:
         response_data = r.json()
         return response_data['choices'][0]['message']['content']
     else:
-        print("Error al consultar :", r.text)  # 🛑 Imprimimos el error si ocurre
+        # Imprimir el error en caso de que algo falle
+        print("Error al consultar DeepSeek:", r.status_code, r.text)
         return "Lo siento, hubo un error al procesar tu mensaje. 😥"
+
 
 def send_message(chat_id, text):
     payload = {
