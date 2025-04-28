@@ -3,10 +3,10 @@ import requests
 
 app = Flask(__name__)
 
-TELEGRAM_TOKEN = '8044022972:AAHAlilUYiWutu1XK9dLj0mTe6kybJBTa14'  # Asegúrate de que este sea tu token real
+TELEGRAM_TOKEN = '8044022972:AAHAlilUYiWuTu1XK9dLj0mTe6kybJBTal4'  
 TELEGRAM_API_URL = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
 
-DEEPSEEK_API_KEY = 'sk-e101d52f3c8b421686dda4b0a1a665ca'  # También verifica que sea el correcto
+DEEPSEEK_API_KEY = 'sk-e101d52f3c8b421686dda4b0a1a665ca' 
 DEEPSEEK_URL = 'https://api.deepseek.com/v1/chat/completions'
 
 @app.route('/', methods=['GET'])
@@ -64,7 +64,7 @@ def ask_deepseek(user_message, full_prompt):
         response_data = r.json()
         return response_data['choices'][0]['message']['content']
     else:
-        print("Error al consultar DeepSeek:", r.text)  # 🛑 Imprimimos el error si ocurre
+        print("Error al consultar :", r.text)  # 🛑 Imprimimos el error si ocurre
         return "Lo siento, hubo un error al procesar tu mensaje. 😥"
 
 def send_message(chat_id, text):
