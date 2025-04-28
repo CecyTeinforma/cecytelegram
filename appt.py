@@ -18,6 +18,7 @@ def home():
     return 'Bot de Telegram + IA activo ✅'
 
 @app.route('/webhook', methods=['POST'])
+@app.route('/webhook', methods=['POST'])
 def webhook():
     data = request.get_json()
     print("Datos recibidos:", data)
@@ -26,21 +27,39 @@ def webhook():
         chat_id = data["message"]["chat"]["id"]
         user_message = data["message"]["text"]
 
-        # Preparar el mensaje para DeepSeek
-        response = client.chat.completions.create(
-            model="deepseek-chat",
-            messages=[
-                {"role": "system", "content": "Eres Cecy, una amiga cercana, empática y confiable 🧡."},
-                {"role": "user", "content": user_message}
-            ]
-        )
+        # Obtener nombre del usuario
+        user_first_name = data["message"]["from"].get("first_name", "usuario")
+        user_last_name = data["message"]["from"].get("last_name", "")
+        full_name = f"{user_first_name} {user_last_name}".strip()
 
-        bot_response = response.choices[0].message.content
-        print("Respuesta de DeepSeek:", bot_response)
+        # Preparar el mensaje para DeepSeek (usando OpenAI)
+        try:
+            response = open.ChatCompletion.create(
+                model="gpt-3.5-turbo",  # DeepSeek utiliza GPT-3.5 o GPT-4
+                messages=[
+                    {{"role": "system", "content": (
+                        "Eres Cecy, una amiga cercana, empática y confiable 🧡. "
+                        "Siempre respondes de manera amable, con un tono cálido y positivo. "
+                        "Te gusta apoyar, animar, aconsejar de forma sencilla y con cariño. "
+                         "Nunca suenas como un robot; eres como una amiga que escucha y conversa."
+                        )}
+                        },
+                    {"role": "user", "content": user_message}
+                        ]   
+            )
+            bot_response = response['choices'][0]['message']['content']
+        except Exception as e:
+            print("Error al consultar DeepSeek:", e)
+            bot_response = (
+            "☕ ¡Hola, soy Cecy! Parece que estoy tomándome un pequeño descanso técnico. "
+            "Estoy trabajando para estar de vuelta muy pronto. 🛠️ ¡No te vayas lejos! 🧡"
+            )
 
+        # Enviar la respuesta a Telegram
         send_message(chat_id, bot_response)
 
     return 'ok', 200
+
 
 def send_message(chat_id, text):
     payload = {
